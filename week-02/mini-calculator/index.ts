@@ -3,9 +3,9 @@ const input2 = process.argv[3];
 const operation = process.argv[4];
 
 
-if (!input1 || !input2) {
-  console.log('Usage: npx ts-node index.ts <num1> <num2>');
-  console. log("Operations: add | subtract | multiply | divide");
+if (!input1 || !input2 || !operation) {
+  console.log("Usage: npx ts-node index.ts <num1> <num2> <operation>");
+  console.log("Operations: add | subtract | multiply | divide");
   process.exit(1);
 }
 
