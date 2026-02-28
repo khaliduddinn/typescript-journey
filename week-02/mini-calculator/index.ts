@@ -1,8 +1,11 @@
 const input1 = process.argv[2];
 const input2 = process.argv[3];
+const operation = process.argv[4];
+
 
 if (!input1 || !input2) {
   console.log('Usage: npx ts-node index.ts <num1> <num2>');
+  console. log("Operations: add | subtract | multiply | divide");
   process.exit(1);
 }
 
@@ -31,7 +34,15 @@ function divide(a: number, b: number): number {
   return a / b;
 }
 
-console.log("Addition:", add(num1, num2));
-console.log("Subtraction:", subtract(num1, num2));
-console.log("Multiplication:", multiply(num1, num2));
-console.log("Division:", divide(num1, num2).toFixed(2));;
+if (operation === "add") {
+  console.log("Result:", add(num1, num2));
+} else if (operation === "subtract") {
+  console.log("Result:", subtract(num1, num2));
+} else if (operation === "multiply") {
+  console.log("Result:", multiply(num1, num2));
+} else if (operation === "divide") {
+  console.log("Result:", divide(num1, num2).toFixed(2));
+} else {
+  console.log("Invalid operation. Use: add | subtract | multiply | divide");
+  process.exit(1);
+}
