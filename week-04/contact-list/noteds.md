@@ -1,0 +1,3 @@
+- Objects group related data.
+- Contact[] means an array of Contact objects.
+- filter returns an array, find returns one item or undefined.
