@@ -27,26 +27,50 @@ const contacts: Contact[] = [
   }
 ];
 
+// --- Functions ---
+
+function addContact(contact: Contact): void {
+  contacts.push(contact);
+}
+
+function searchContacts(query: string): Contact[] {
+  return contacts.filter((contact) => {
+    return contact.name.toLowerCase().includes(query.toLowerCase());
+  });
+}
+
+// --- Add a new contact (test) ---
+
+addContact({
+  name: "Sara",
+  email: "sara@email.com",
+  age: 27,
+  isActive: true
+});
+
+console.log("Updated Contacts:", contacts);
+
+// --- Array method practice (now includes Sara) ---
+
 // Count contacts older than 26
-const ageCount = contacts.filter((contact) => {
+const olderThan26Count = contacts.filter((contact) => {
   return contact.age > 26;
 }).length;
+console.log("Older than 26 Count:", olderThan26Count);
 
-console.log("Older than 26 Count:", ageCount);
-
-// 1) inactiveContacts
+// Inactive contacts
 const inactiveContacts = contacts.filter((contact) => {
   return contact.isActive === false;
 });
 console.log("Inactive Contacts:", inactiveContacts);
 
-// 2) emails
+// Emails
 const emails = contacts.map((contact) => {
   return contact.email;
 });
 console.log("Emails:", emails);
 
-// 3) activeCount (using reduce)
+// Active count (reduce)
 const activeCount = contacts.reduce((count, contact) => {
   if (contact.isActive) {
     return count + 1;
@@ -55,9 +79,7 @@ const activeCount = contacts.reduce((count, contact) => {
 }, 0);
 console.log("Active Count:", activeCount);
 
-const query = "x"; // try: "kha", "men", "YO"
-const found = contacts.filter((contact) => {
-  return contact.name.toLowerCase().includes(query.toLowerCase());
-});
-
-console.log(`Search results for "${query}":`, found);
+// Search (case-insensitive)
+const query = "sa"; // try: "kha", "men", "YO", "x"
+const results = searchContacts(query);
+console.log(`Search results for "${query}":`, results);
