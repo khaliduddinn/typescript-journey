@@ -39,6 +39,23 @@ function searchContacts(query: string): Contact[] {
   });
 }
 
+function listContacts(): void {
+  console.log("All Contacts:");
+  console.log(contacts);
+}
+
+function toggleActive(email: string): void {
+  const contact = contacts.find((contact) => {
+    return contact.email === email;
+  });
+
+  if (contact) {
+    contact.isActive = !contact.isActive;
+  } else {
+    console.log("Contact not found");
+  }
+}
+
 // --- Add a new contact (test) ---
 
 addContact({
@@ -83,3 +100,10 @@ console.log("Active Count:", activeCount);
 const query = "sa"; // try: "kha", "men", "YO", "x"
 const results = searchContacts(query);
 console.log(`Search results for "${query}":`, results);
+
+listContacts();
+
+toggleActive("menaka@email.com");
+
+console.log("After toggle:");
+listContacts();
