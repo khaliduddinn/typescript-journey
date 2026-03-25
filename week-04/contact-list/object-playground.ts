@@ -6,6 +6,10 @@ type Contact = {
   phone?: string;
 };
 
+// -----------------------------
+// Data
+// -----------------------------
+
 const contacts: Contact[] = [
   {
     name: "Khalid",
@@ -27,21 +31,28 @@ const contacts: Contact[] = [
   }
 ];
 
-// --- Functions ---
+// -----------------------------
+// Functions
+// -----------------------------
 
 function addContact(contact: Contact): void {
   contacts.push(contact);
+}
+
+function listContacts(): void {
+  console.log("All Contacts:");
+
+  contacts.forEach((contact, index) => {
+    console.log(
+      `${index + 1}. ${contact.name} - ${contact.email} - ${contact.isActive ? "Active" : "Inactive"}`
+    );
+  });
 }
 
 function searchContacts(query: string): Contact[] {
   return contacts.filter((contact) => {
     return contact.name.toLowerCase().includes(query.toLowerCase());
   });
-}
-
-function listContacts(): void {
-  console.log("All Contacts:");
-  console.log(contacts);
 }
 
 function toggleActive(email: string): void {
@@ -51,16 +62,43 @@ function toggleActive(email: string): void {
 
   if (contact) {
     console.log(contact.name + " was " + (contact.isActive ? "active" : "inactive"));
-
     contact.isActive = !contact.isActive;
-
     console.log(contact.name + " is now " + (contact.isActive ? "active" : "inactive"));
   } else {
     console.log("Contact not found");
   }
 }
 
-// --- Add a new contact (test) ---
+function countOlderThan(age: number): number {
+  return contacts.filter((contact) => {
+    return contact.age > age;
+  }).length;
+}
+
+function getInactiveContacts(): Contact[] {
+  return contacts.filter((contact) => {
+    return contact.isActive === false;
+  });
+}
+
+function getEmails(): string[] {
+  return contacts.map((contact) => {
+    return contact.email;
+  });
+}
+
+function countActiveContacts(): number {
+  return contacts.reduce((count, contact) => {
+    if (contact.isActive) {
+      return count + 1;
+    }
+    return count;
+  }, 0);
+}
+
+// -----------------------------
+// Test Calls
+// -----------------------------
 
 addContact({
   name: "Sara",
@@ -69,43 +107,16 @@ addContact({
   isActive: true
 });
 
-console.log("Updated Contacts:", contacts);
-
-// --- Array method practice (now includes Sara) ---
-
-// Count contacts older than 26
-const olderThan26Count = contacts.filter((contact) => {
-  return contact.age > 26;
-}).length;
-console.log("Older than 26 Count:", olderThan26Count);
-
-// Inactive contacts
-const inactiveContacts = contacts.filter((contact) => {
-  return contact.isActive === false;
-});
-console.log("Inactive Contacts:", inactiveContacts);
-
-// Emails
-const emails = contacts.map((contact) => {
-  return contact.email;
-});
-console.log("Emails:", emails);
-
-// Active count (reduce)
-const activeCount = contacts.reduce((count, contact) => {
-  if (contact.isActive) {
-    return count + 1;
-  }
-  return count;
-}, 0);
-console.log("Active Count:", activeCount);
-
-// Search (case-insensitive)
-const query = "sa"; // try: "kha", "men", "YO", "x"
-const results = searchContacts(query);
-console.log(`Search results for "${query}":`, results);
-
+console.log("Updated Contacts:");
 listContacts();
+
+console.log("Older than 26 Count:", countOlderThan(26));
+console.log("Inactive Contacts:", getInactiveContacts());
+console.log("Emails:", getEmails());
+console.log("Active Count:", countActiveContacts());
+
+const results = searchContacts("sa");
+console.log('Search results for "sa":', results);
 
 toggleActive("menaka@email.com");
 
