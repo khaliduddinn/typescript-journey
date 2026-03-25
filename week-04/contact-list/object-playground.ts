@@ -50,11 +50,13 @@ function toggleActive(email: string): void {
   });
 
   if (contact) {
+    console.log(contact.name + " was " + (contact.isActive ? "active" : "inactive"));
+
     contact.isActive = !contact.isActive;
-    console.log(contact.name + " is now" + (contact.isActive ? "active" : "inactive"));
+
+    console.log(contact.name + " is now " + (contact.isActive ? "active" : "inactive"));
   } else {
     console.log("Contact not found");
-
   }
 }
 
