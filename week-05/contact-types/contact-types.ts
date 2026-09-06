@@ -32,3 +32,29 @@ const menaka: Contact = {
 console.log(khalid);
 console.log(sara);
 console.log(menaka);
+
+interface Task {
+  title: string;
+  priority: "low" | "medium" | "high";
+  isDone: boolean;
+  dueDate?: string;
+  notes?: string;
+}
+
+
+const codingTask: Task = {
+  title: "Practice TypeScript",
+  priority: "high",
+  isDone: false
+};
+
+console.log(codingTask);
+
+const readingTask: Task = {
+  title: "Read TypeScript notes",
+  priority: "medium",
+  isDone: false,
+  notes: "Review interfaces and unions"
+};
+
+console.log(readingTask);
