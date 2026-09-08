@@ -58,3 +58,39 @@ const readingTask: Task = {
 };
 
 console.log(readingTask);
+
+
+interface Contact {
+  name: string;
+  email: string;
+  age: number;
+  status: Status;
+  phone?: string;
+}
+
+type CustomerLevel = "basic" | "silver" | "gold";
+
+type Plan = "free" | "pro" | "business";
+
+type VerificationStatus = "verified" | "pending" | "rejected";
+
+interface Customer {
+  name: string;
+  email: string;
+  plan: Plan;
+  isVerified: boolean;
+  phone?: string;
+  level: CustomerLevel;
+  verificationStatus: VerificationStatus;
+}
+
+const islam: Customer = {
+  name: "Islam",
+  email: "islam@email.com",
+  plan: "pro",
+  isVerified: true,
+  level: "gold",
+  verificationStatus: "verified",
+};
+
+console.log(islam);
