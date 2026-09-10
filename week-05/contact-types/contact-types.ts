@@ -125,3 +125,19 @@ const blockedContacts = contacts.filter((contact) => {
 
 console.log("Blocked Contacts:", blockedContacts);
 
+function getBlockedContacts(): Contact[] {
+  return contacts.filter((contact) => {
+    return contact.status === "blocked";
+  });
+}
+
+console.log("Blocked Contacts:", getBlockedContacts());
+
+function findContactByEmail(email: string): Contact | undefined {
+  return contacts.find((contact) => {
+    return contact.email === email;
+  });
+}
+
+console.log(findContactByEmail("menaka@email.com"));
+
