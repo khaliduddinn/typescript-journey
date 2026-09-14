@@ -30,3 +30,80 @@ function checkInput(input: string | number): void {
 
 checkInput("hello");
 checkInput(4);
+
+type ContactStatus = "active" | "inactive" | "blocked";
+
+function showDetailedStatus(status: ContactStatus): void {
+  if (status === "active") {
+    console.log("Ready to call");
+  } else if (status === "inactive") {
+    console.log("Contact is inactive");
+  } else {
+    console.log("Contact is blocked");
+  }
+}
+
+showDetailedStatus("active");
+showDetailedStatus("inactive");
+showDetailedStatus("blocked");
+
+type Lead = {
+  name: string;
+  company: string;
+};
+
+type Customer = {
+  name: string;
+  plan: "free" | "pro";
+};
+
+function showPerson(person: Lead | Customer): void {
+  if ("company" in person) {
+    console.log("Lead company:", person.company);
+  } else {
+    console.log("Customer plan:", person.plan);
+  }
+}
+
+showPerson({
+  name: "Khalid",
+  company: "Koala"
+});
+
+showPerson({
+  name: "Sara",
+  plan: "pro"
+});
+
+type LeadRecord = {
+  kind: "lead";
+  name: string;
+  company: string;
+};
+
+type CustomerRecord = {
+  kind: "customer";
+  name: string;
+  plan: "free" | "pro";
+};
+
+function displayRecord(record: LeadRecord | CustomerRecord): void {
+  if (record.kind === "lead") {
+    console.log("Lead company:", record.company);
+  } else {
+    console.log("Customer plan:", record.plan);
+  }
+}
+
+displayRecord({
+  kind: "lead",
+  name: "Khalid",
+  company: "Koala"
+});
+
+displayRecord({
+  kind: "customer",
+  name: "Sara",
+  plan: "pro"
+});
+
